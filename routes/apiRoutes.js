@@ -13,7 +13,7 @@ module.exports = function (app){
 
 app.get("/api/notes", function(req, res) {
   console.log("get")
-    res.json(notes[req.params.id]);
+    res.json(notes);
   });
 
 app.post("/api/notes", function(req, res) {
@@ -23,22 +23,22 @@ notes.push(newNote);
 res.json(newNote);
 for (i = 0; i < notes.length; i ++) {
   notes[i].id = i;
-  fs.writeFileSync("./db/db.json", JSON.stringify(notes, null, 2), function (err) {
+}  
+  fs.writeFileSync("./db/db.json", JSON.stringify((notes,'\t')), function (err) {
     if (err) 
         throw err
 
 }); 
-}
+
 });
 
 
 app.delete("/api/notes/:id", function (req, res) {
-  var deleteID = req.params.id;
-  notes.splice(deleteID, 1);
+  notes.splice(req.params.id, 1);
   for (i = 0; i < notes.length; i ++) {
     notes[i].id = i;
 }
-  fs.writeFileSync("./db/db.json", JSON.stringify(notes), function (err) {
+  fs.writeFileSync("./db/db.json", JSON.stringify((notes,'\t')), function (err) {
       if (err) 
           throw err
       });
