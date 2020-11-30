@@ -12,9 +12,9 @@ app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-app.get("/styles", function(req, res) {
-    res.sendFile(path.join(__dirname, "../assets/css/styles.css"));
-});
+// app.get("/styles", function(req, res) {
+//     res.sendFile(path.join(__dirname, "../assets/css/styles.css"));
+// });
 
 }
   
