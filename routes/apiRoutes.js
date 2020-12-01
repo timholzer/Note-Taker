@@ -12,7 +12,6 @@ if (savedNotes) {
 module.exports = function (app){
 
 app.get("/api/notes", function(req, res) {
-  console.log("get")
     res.json(notes);
   });
 
@@ -27,11 +26,8 @@ for (i = 0; i < notes.length; i ++) {
   fs.writeFileSync("./db/db.json", JSON.stringify((notes,'\t')), function (err) {
     if (err) 
         throw err
-
 }); 
-
 });
-
 
 app.delete("/api/notes/:id", function (req, res) {
   notes.splice(req.params.id, 1);
@@ -44,6 +40,4 @@ app.delete("/api/notes/:id", function (req, res) {
       });
   res.json({deletion:"success"})
 });
-//notes.splice(req.params.id, 1);
-//updateDb();
 }
